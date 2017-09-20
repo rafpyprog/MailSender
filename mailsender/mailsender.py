@@ -1,7 +1,12 @@
 import os
+
 import win32com.client as win32
 
-__version__ = '0.0.1'
+
+__all__ = ['__version__', 'MailSender']
+
+
+__version__ = '0.0.2'
 
 
 class MailSender(object):
