@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from subprocess import Popen, PIPE
 from distutils.version import StrictVersion
 import platform
 import pip
@@ -37,4 +38,6 @@ if python_version >= cp36:
                                  '7cab31f707fc4a8d33e3d6b14daa8750ecabf658127e'
                                  '31d16cdd06b/pypiwin32-220-cp36-none-win32.wh'
                                  'l')
-        pip.main(['install', pypiwin32_cp36_32bits])
+
+proc = Popen(['pip', f'install {pypiwin32_cp36_64bits}'], shell=True, stdout=PIPE)
+stdout = proc.communicate()
