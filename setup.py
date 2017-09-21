@@ -39,5 +39,5 @@ if python_version >= cp36:
                                  '31d16cdd06b/pypiwin32-220-cp36-none-win32.wh'
                                  'l')
 
-proc = Popen([f'pip install {pypiwin32_cp36_64bits}'], shell=True, stdout=PIPE)
+proc = Popen(f'pip install {pypiwin32_cp36_64bits}', shell=True, stdout=PIPE)
 stdout = proc.communicate()
