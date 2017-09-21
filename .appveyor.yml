@@ -36,4 +36,5 @@ after_test:
   # interpreter
 
 on_success:
+  - pip uninstall pypiwin32
   - del "./dist/mailsender-0.0.5-py2.py3-none-any.whl"
