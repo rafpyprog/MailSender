@@ -22,7 +22,7 @@ install:
 build: off
 
 test_script:
-  - %PYTHON%\\python.exe setup.py bdist_wheel"
+  - "%PYTHON%\\python.exe setup.py bdist_wheel"
   # Put your test command here.
   # If you don't need to build C extensions on 64-bit Python 3.3 or 3.4,
   # you can remove "build.cmd" from the front of the command, as it's
