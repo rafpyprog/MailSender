@@ -4,19 +4,20 @@ environment:
     # http://www.appveyor.com/docs/installed-software#python
     # The list here is complete (excluding Python 2.6, which
     # isn't covered by this document) at the time of writing.
-    - PYTHON: "C:\\Python35-x64"
     - PYTHON: "C:\\Python36-x64"
 
   fast_finish: true
 
 install:
   # We need wheel installed to build wheels
+  - "%PYTHON%\\python.exe -m pip -r dev-requirements.txt"
   - "%PYTHON%\\python.exe -m pip install wheel"
   #- "%PYTHON%\\python.exe -m pip install -r requirements.txt"
 
 build: off
 
 test_script:
+  - "%PYTHON%\\python.exe -m mypy mailsender --ignore-missing-imports"
   - "%PYTHON%\\python.exe setup.py bdist_wheel --universal"
   # Put your test command here.
   # If you don't need to build C extensions on 64-bit Python 3.3 or 3.4,
@@ -36,5 +37,5 @@ after_test:
   # interpreter
 
 on_success:
-  - pip uninstall pypiwin32
+  - pip uninstall pypiwin32 --yes
   - del "./dist/mailsender-0.0.5-py2.py3-none-any.whl"
