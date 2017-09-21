@@ -11,7 +11,7 @@ environment:
     - PYTHON: "C:\\Python36"
     - PYTHON: "C:\\Python36-x64"
 
-fast_finish: true
+    - fast_finish: true
 
 install:
   # We need wheel installed to build wheels
