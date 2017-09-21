@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from distutils.version import StrictVersion
 import platform
 import pip

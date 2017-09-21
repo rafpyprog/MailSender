@@ -34,7 +34,7 @@ test_script:
   #- "%PYTHON%\\python.exe -m pytest tests/test.py -v"
 
 after_test:
-  - "%PYTHON%\\python.exe pip install ./dist/mailsender-0.0.4-py3-none-any.whl"
+  - "%PYTHON%\\python.exe -m pip install ./dist/mailsender-0.0.4-py3-none-any.whl"
   # This step builds your wheels.
   # Again, you only need build.cmd if you're building C extensions for
   # 64-bit Python 3.3/3.4. And you need to use %PYTHON% to get the correct

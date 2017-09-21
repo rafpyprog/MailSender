@@ -1,10 +1,17 @@
+# -*- coding: utf-8 -*-
+'''
+    MailSender
+
+    Send email using the active profile on Outlook.
+'''
+from os.path import isfile
+from typing import Dict, List
+
+from win32com.client import CDispatch
 import win32com.client as win32
 
 
-__all__ = ['__version__', 'MailSender']
-
-
-__version__ = '0.0.3'
+__all__ = ['MailSender']
 
 
 class MailSender(object):
@@ -12,20 +19,40 @@ class MailSender(object):
 
     def __init__(self):
         self.outlook = win32.Dispatch('outlook.application')
+        self.mail = None
 
-    def new_email(self, to, subject, body, HTML_body=None, attachments=None):
-        ''' Return a new email object. To send it use email.Send()'''
-        mail = self.outlook.CreateItem(0)
+    def add_email_headers(self, headers: Dict[str, str]):
+        ''' Add email headers '''
+        for field, value in headers.items():
+            setattr(self.mail, field, value)
 
-        mail.To = to
-        mail.Subject = subject
-        mail.Body = body
+    def add_email_content(self, content: str, html_body=False):
+        ''' Add email content '''
+        if html_body is True:
+            setattr(self.mail, 'HTMLBody', content)
+        else:
+            setattr(self.mail, 'Body', content)
 
-        if HTML_body:
-            mail.HTMLBody = HTML_body
-
-        if isinstance(attachments, list) and attachments != []:
+    def add_email_attachments(self, attachments: List[str]):
+        ''' Add email attachments '''
+        if isinstance(attachments, list):
             for file in attachments:
-                mail.Attachments.Add(file)
+                if isfile(file) is False:
+                    msg = '{} attachment  is not a valid file.'
+                    raise ValueError(msg.format(file))
+                self.mail.Attachments.Add(file)
+        else:
+            raise ValueError('Attachments must be in a list')
 
-        return mail
+    def new_email(
+            self, headers: Dict[str, str], content: str, attachments=None,
+            html_body=False) -> CDispatch:
+        ''' Return a new email object. To send it use email.Send()'''
+        self.mail: CDispatch = self.outlook.CreateItem(0)
+
+        self.add_email_headers(headers)
+        self.add_email_content(content, html_body=html_body)
+        if attachments is not None:
+            self.add_email_attachments(attachments)
+
+        return self.mail
