@@ -10,7 +10,7 @@ environment:
 
 install:
   # We need wheel installed to build wheels
-  - "%PYTHON%\\python.exe -m pip -r dev-requirements.txt"
+  - "%PYTHON%\\python.exe -m pip install -r dev-requirements.txt"
   - "%PYTHON%\\python.exe -m pip install wheel"
   #- "%PYTHON%\\python.exe -m pip install -r requirements.txt"
 
