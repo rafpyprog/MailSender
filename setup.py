@@ -13,8 +13,8 @@ setup(
     packages=['mailsender'],
     version=__version__,
     install_requires=[
-        'pypiwin32==219,python_version<"3.6"'
-    ]
+        'pypiwin32==219;python_version<"3.6"',
+    ],
     description='Envia email utilizando o usuário ativo no Outlook.',
     )
 
@@ -24,7 +24,7 @@ cp36 = '3.6.0'
 bits = platform.architecture()[0]
 
 if python_version >= cp36:
-    if bits = '64bit':
+    if bits == '64bit':
         pypiwin32_cp36_64bits = ('https://pypi.python.org/packages/d0/f7/56e35'
                                  '902d32299020cf9136264ca102ff0b03c0555621b469'
                                  'c825bc10d08/pypiwin32-220-cp36-none-win_amd6'
