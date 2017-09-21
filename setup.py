@@ -32,7 +32,7 @@ if python_version >= cp36:
                                  '902d32299020cf9136264ca102ff0b03c0555621b469'
                                  'c825bc10d08/pypiwin32-220-cp36-none-win_amd6'
                                  '4.whl')
-        pip.main(['install', pypiwin32_cp36_64bits])
+        #pip.main(['install', pypiwin32_cp36_64bits])
     else:
         pypiwin32_cp36_32bits = ('https://pypi.python.org/packages/bb/5b/2f620'
                                  '7cab31f707fc4a8d33e3d6b14daa8750ecabf658127e'
